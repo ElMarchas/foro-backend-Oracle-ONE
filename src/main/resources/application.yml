@@ -1,0 +1,18 @@
+spring:
+  application.name: foro-backend-Oracle-ONE
+  datasource:
+    url: jdbc:mysql://localhost/foro_oracle_api
+    username: root
+    password: ${DB_PASSWORD:123456}
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  error:
+    include-stacktrace: never
+api:
+  security:
+    secret: ${JWT_SECRET:123456}
