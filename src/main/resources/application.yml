@@ -5,6 +5,9 @@ spring:
     username: root
     password: ${DB_PASSWORD:123456}
   jpa:
+    hibernate:
+      ddl-auto: update
+      hbm2ddl: auto
     show-sql: true
     properties:
       hibernate:
