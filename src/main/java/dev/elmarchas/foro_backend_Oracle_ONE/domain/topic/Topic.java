@@ -18,6 +18,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -47,4 +48,17 @@ public class Topic {
     private List<Reply> replys;
     private Boolean active;
 
+    public Topic(
+            @NotBlank String title,
+            @NotBlank String message,
+            User user,
+            Classroom classroom) {
+        this.title = title;
+        this.message = message;
+        this.timeStamp = LocalDateTime.now();
+        this.status = 0;
+        this.user = user;
+        this.classroom = classroom;
+        this.active = true;
+    }
 }

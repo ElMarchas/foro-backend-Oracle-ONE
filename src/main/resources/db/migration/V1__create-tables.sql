@@ -12,12 +12,12 @@ private String name;
 private ClassCategory category;
 */
 
-
+/*cambia timeStamp por time_stamp*/
 create table replys(
 
     id bigint not null auto_increment,
     message varchar(500) not null,
-    timeStamp datetime not null,
+    time_stamp datetime not null,
     solution boolean not null,
     topic_id bigint not null,
     user_id bigint not null,
