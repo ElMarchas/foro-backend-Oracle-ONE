@@ -20,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import dev.elmarchas.foro_backend_Oracle_ONE.domain.classroom.Classroom;
 import dev.elmarchas.foro_backend_Oracle_ONE.domain.classroom.ClassroomRepository;
 import dev.elmarchas.foro_backend_Oracle_ONE.domain.topic.DTOCreateTopic;
+import dev.elmarchas.foro_backend_Oracle_ONE.domain.topic.DTOListTopic;
 import dev.elmarchas.foro_backend_Oracle_ONE.domain.topic.DTOResponseTopic;
 import dev.elmarchas.foro_backend_Oracle_ONE.domain.topic.Topic;
 import dev.elmarchas.foro_backend_Oracle_ONE.domain.topic.TopicRepository;
@@ -94,16 +95,15 @@ public class TopicController {
         return ResponseEntity.created(url).body(res);
 
     }
+
+    @GetMapping
+    public ResponseEntity<Page<DTOListTopic>> listadoTopics(@PageableDefault(size = 2) Pageable paginacion) {
+        // return topicRepository.findAll(paginacion).map(DatosListadoTopic::new);
+        return ResponseEntity.ok(topicRepository.findByActiveTrue(paginacion).map(
+                DTOListTopic::new));
+    }
+
     /*
-     * 
-     * @GetMapping
-     * public ResponseEntity<Page<DatosListadoTopic>>
-     * listadoTopics(@PageableDefault(size = 2) Pageable paginacion) {
-     * // return topicRepository.findAll(paginacion).map(DatosListadoTopic::new);
-     * return ResponseEntity.ok(topicRepository.findByActivoTrue(paginacion).map(
-     * DatosListadoTopic::new));
-     * }
-     * 
      * @PutMapping
      * 
      * @Transactional

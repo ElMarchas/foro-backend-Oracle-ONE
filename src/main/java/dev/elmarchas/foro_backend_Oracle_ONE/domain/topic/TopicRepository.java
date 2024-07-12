@@ -14,7 +14,7 @@ import jakarta.validation.constraints.NotBlank;
 
 @Repository
 public interface TopicRepository extends JpaRepository<Topic, Long> {
-    //Page<Topic> findByActivoTrue(Pageable paginacion);
+    Page<Topic> findByActiveTrue(Pageable paginacion);
 
     Optional<Topic> findByTitle(@NotBlank String title);
 

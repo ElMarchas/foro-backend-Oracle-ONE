@@ -18,8 +18,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfigurations {
 
-    //@Autowired
-    //private SecurityFilter securityFilter;
+    // @Autowired
+    // private SecurityFilter securityFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -27,11 +27,12 @@ public class SecurityConfigurations {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Le indicamos a Spring el tipo de sesion
                 .and().authorizeRequests()
                 .requestMatchers(HttpMethod.POST, "/login", "/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/login", "/**").permitAll()
                 .requestMatchers("/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
-                //.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                // .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
