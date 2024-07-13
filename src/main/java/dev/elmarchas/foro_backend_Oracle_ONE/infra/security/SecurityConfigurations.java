@@ -18,24 +18,51 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfigurations {
 
-    // @Autowired
-    // private SecurityFilter securityFilter;
+    @Autowired
+    private SecurityFilter securityFilter;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity.csrf().disable().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Le indicamos a Spring el tipo de sesion
-                .and().authorizeRequests()
-                .requestMatchers(HttpMethod.POST, "/login", "/**").permitAll()
-                .requestMatchers(HttpMethod.DELETE).permitAll()
-                .requestMatchers( "/**").permitAll()
-                .requestMatchers("/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                // .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http.csrf(csrf -> csrf.disable())
+                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers(HttpMethod.POST, "/login", "/**").permitAll()
+                        .requestMatchers("/**").permitAll()
+                        .requestMatchers("/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
+                        .anyRequest().authenticated())
                 .build();
     }
+
+    // Original
+    // @Bean
+    // public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity)
+    // throws Exception {
+    // return httpSecurity.csrf().disable().sessionManagement()
+    // .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Le indicamos a
+    // Spring el tipo de sesion
+    // .and().authorizeRequests()
+    // .requestMatchers(HttpMethod.POST, "/login", "/**").permitAll()
+    // .requestMatchers(HttpMethod.DELETE).permitAll()
+    // .requestMatchers("/**").permitAll()
+    // .requestMatchers("/swagger-ui.html", "/v3/api-docs/**",
+    // "/swagger-ui/**").permitAll()
+    // .anyRequest()
+    // .authenticated()
+    // .and()
+    // // .addFilterBefore(securityFilter,
+    // UsernamePasswordAuthenticationFilter.class)
+    // .build();
+    // }
+
+    // Ejemplo de alura
+    // @Bean
+    // public SecurityFilterChain securityFilterChain(HttpSecurity http) throws
+    // Exception {
+    // return http.csrf(csrf -> csrf.disable())
+    // .sessionManagement(sess ->
+    // sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+    // .build();
+    // }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
