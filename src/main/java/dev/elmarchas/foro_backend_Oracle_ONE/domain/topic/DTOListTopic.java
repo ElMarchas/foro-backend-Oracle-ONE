@@ -9,7 +9,9 @@ public record DTOListTopic(
         LocalDateTime timeStamp,
         int status,
         Long userId,
-        Long classroomI) {
+        String userName,
+        Long classroomId,
+        String classroomName) {
 
     public DTOListTopic(Topic topic) {
         this(
@@ -19,6 +21,8 @@ public record DTOListTopic(
                 topic.getTimeStamp(),
                 topic.getStatus(),
                 topic.getUser().getId(),
-                topic.getClassroom().getId());
+                topic.getUser().getName(),
+                topic.getClassroom().getId(),
+                topic.getClassroom().getName());
     }
 }

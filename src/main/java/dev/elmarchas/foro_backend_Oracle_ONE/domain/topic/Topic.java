@@ -18,6 +18,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -60,5 +61,18 @@ public class Topic {
         this.user = user;
         this.classroom = classroom;
         this.active = true;
+    }
+
+    public void updateData(@Valid DTOUpdateTopic dataUpdateTopic) {
+        if (dataUpdateTopic.title() != null) {
+            this.title = dataUpdateTopic.title();
+        }
+        if (dataUpdateTopic.message() != null) {
+            this.message = dataUpdateTopic.message();
+        }
+    }
+
+    public void deleteTopic() {
+        this.active = false;
     }
 }

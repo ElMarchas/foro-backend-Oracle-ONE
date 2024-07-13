@@ -9,7 +9,9 @@ public record DTOResponseTopic(
         LocalDateTime timeStamp,
         int status,
         Long userId,
+        String userName,
         Long classroomId,
+        String classroomName,
         Boolean active) {
 
 }
