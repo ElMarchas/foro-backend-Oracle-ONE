@@ -26,7 +26,7 @@ public class AutenticacionController {
     private TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity autenticarUsuario(@RequestBody @Valid DTOAuthenticationUser dataUser) {
+    public ResponseEntity<DatosJWTToken> autenticarUsuario(@RequestBody @Valid DTOAuthenticationUser dataUser) {
         System.out.println("holabb");
         Authentication authToken = new UsernamePasswordAuthenticationToken(dataUser.name(),
                 dataUser.password());

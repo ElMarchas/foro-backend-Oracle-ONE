@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import dev.elmarchas.foro_backend_Oracle_ONE.domain.classroom.Classroom;
 import dev.elmarchas.foro_backend_Oracle_ONE.domain.classroom.ClassroomRepository;
 import dev.elmarchas.foro_backend_Oracle_ONE.domain.topic.DTOCreateTopic;
 import dev.elmarchas.foro_backend_Oracle_ONE.domain.topic.DTOListTopic;
@@ -127,7 +126,7 @@ public class TopicController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity updateTopic(@RequestBody @Valid DTOUpdateTopic dataUpdateTopic) {
+    public ResponseEntity<DTOResponseTopic> updateTopic(@RequestBody @Valid DTOUpdateTopic dataUpdateTopic) {
 
         if (!topicRepository.findById(dataUpdateTopic.id()).isPresent()) {
             throw new ArithmeticException("topic id not found");
@@ -150,7 +149,7 @@ public class TopicController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity eliminarTopic(@PathVariable Long id) {
+    public ResponseEntity<Void> eliminarTopic(@PathVariable Long id) {
         if (!topicRepository.findById(id).isPresent()) {
             throw new ArithmeticException("topic id not found");
         }

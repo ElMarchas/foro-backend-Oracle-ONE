@@ -1,6 +1,5 @@
 package dev.elmarchas.foro_backend_Oracle_ONE.domain.user;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -15,7 +14,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Collection;
-import java.util.List;
 
 @Embeddable
 @Table(name = "users")

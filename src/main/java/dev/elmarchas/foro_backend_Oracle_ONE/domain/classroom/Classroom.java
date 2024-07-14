@@ -1,14 +1,10 @@
 package dev.elmarchas.foro_backend_Oracle_ONE.domain.classroom;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
-import dev.elmarchas.foro_backend_Oracle_ONE.domain.reply.Reply;
 import dev.elmarchas.foro_backend_Oracle_ONE.domain.topic.Topic;
-import dev.elmarchas.foro_backend_Oracle_ONE.domain.user.User;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
